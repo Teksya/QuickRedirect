@@ -23,8 +23,13 @@ app.get('/:route', (req, res) => {
       res.send(updatedHtml);
     });
   } else {
-    res.status(404).send('Not Found');
+    res.status(404).sendFile(path.join(__dirname, '404.html'));
   }
+});
+
+// Middleware pour gérer les erreurs 404
+app.use((req, res) => {
+  res.status(404).sendFile(path.join(__dirname, '404.html'));
 });
 
 app.listen(port, () => {
