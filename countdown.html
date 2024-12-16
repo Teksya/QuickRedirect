@@ -2,23 +2,42 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Redirecting...</title>
+  <title>Redirection...</title>
   <style>
     body {
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
+      margin: 0;
       font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #1e3c72, #2a5298);
+      overflow: hidden;
     }
     .countdown {
       text-align: center;
+      color: white;
+      font-size: 2em;
+    }
+    .snowflake {
+      position: absolute;
+      top: -10px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.8;
+      pointer-events: none;
+      animation: fall linear infinite;
+    }
+    @keyframes fall {
+      to {
+        transform: translateY(100vh);
+      }
     }
   </style>
 </head>
 <body>
   <div class="countdown">
-    <h1>Redirecting in <span id="countdown">3</span> seconds...</h1>
+    <h1>Redirection dans <span id="countdown">3</span> secondss...</h1>
   </div>
   <script>
     let countdown = 3;
@@ -33,6 +52,23 @@
         window.location.href = destination;
       }
     }, 1000);
+
+    // Snowflake animation
+    function createSnowflake() {
+      const snowflake = document.createElement('div');
+      snowflake.classList.add('snowflake');
+      snowflake.style.left = `${Math.random() * 100}vw`;
+      snowflake.style.width = `${Math.random() * 10 + 5}px`;
+      snowflake.style.height = snowflake.style.width;
+      snowflake.style.animationDuration = `${Math.random() * 3 + 2}s`;
+      document.body.appendChild(snowflake);
+
+      setTimeout(() => {
+        snowflake.remove();
+      }, 5000);
+    }
+
+    setInterval(createSnowflake, 200);
   </script>
 </body>
 </html>
