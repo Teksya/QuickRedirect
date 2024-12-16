@@ -23,8 +23,7 @@
   <script>
     let countdown = 3;
     const countdownElement = document.getElementById('countdown');
-    const urlParams = new URLSearchParams(window.location.search);
-    const destination = urlParams.get('url');
+    const destination = '{{destination}}';
 
     const interval = setInterval(() => {
       countdown--;
