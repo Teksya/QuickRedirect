@@ -129,5 +129,7 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
+# Ignorer les fichiers JSON de redirections
+redirects*.json
 
 redirects.json
