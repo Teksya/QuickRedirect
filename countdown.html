@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Redirecting...</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+    }
+    .countdown {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="countdown">
+    <h1>Redirecting in <span id="countdown">3</span> seconds...</h1>
+  </div>
+  <script>
+    let countdown = 3;
+    const countdownElement = document.getElementById('countdown');
+    const urlParams = new URLSearchParams(window.location.search);
+    const destination = urlParams.get('url');
+
+    const interval = setInterval(() => {
+      countdown--;
+      countdownElement.textContent = countdown;
+      if (countdown === 0) {
+        clearInterval(interval);
+        window.location.href = destination;
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
