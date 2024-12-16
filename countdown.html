@@ -18,6 +18,7 @@
       text-align: center;
       color: white;
       font-size: 2em;
+      padding: 0 20px;
     }
     .snowflake {
       position: absolute;
@@ -33,14 +34,19 @@
         transform: translateY(100vh);
       }
     }
+    @media (max-width: 600px) {
+      .countdown {
+        font-size: 1.5em;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="countdown">
-    <h1>Redirection dans <span id="countdown">3</span> secondss...</h1>
+    <h1>Redirection dans <span id="countdown">2</span> secondes...</h1>
   </div>
   <script>
-    let countdown = 3;
+    let countdown = 2;
     const countdownElement = document.getElementById('countdown');
     const destination = '{{destination}}';
 
@@ -60,7 +66,7 @@
       snowflake.style.left = `${Math.random() * 100}vw`;
       snowflake.style.width = `${Math.random() * 10 + 5}px`;
       snowflake.style.height = snowflake.style.width;
-      snowflake.style.animationDuration = `${Math.random() * 3 + 2}s`;
+      snowflake.style.animationDuration = `${Math.random() * 2 + 1}s`;
       document.body.appendChild(snowflake);
 
       setTimeout(() => {
