@@ -14,9 +14,13 @@ app.get('/:route', (req, res) => {
   const destination = redirects[route];
 
   if (destination) {
-    res.sendFile(path.join(__dirname, 'countdown.html'), {
-      headers: { 'Content-Type': 'text/html' },
-      query: { url: destination }
+    fs.readFile(path.join(__dirname, 'countdown.html'), 'utf8', (err, data) => {
+      if (err) {
+        res.status(500).send('Server Error');
+        return;
+      }
+      const updatedHtml = data.replace('{{destination}}', destination);
+      res.send(updatedHtml);
     });
   } else {
     res.status(404).send('Not Found');
