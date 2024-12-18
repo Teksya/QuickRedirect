@@ -5,6 +5,14 @@ const path = require('path');
 const app = express();
 const port = 3000;
 
+// Middleware pour rediriger HTTP vers HTTPS
+app.use((req, res, next) => {
+  if (req.headers['x-forwarded-proto'] && req.headers['x-forwarded-proto'] !== 'https') {
+    return res.redirect(`https://${req.headers.host}${req.url}`);
+  }
+  next();
+});
+
 // Charger les redirections depuis le fichier JSON
 const redirects = JSON.parse(fs.readFileSync('redirects.json', 'utf8'));
 
